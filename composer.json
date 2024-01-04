@@ -1,13 +1,12 @@
 {
-    "name": "shabeer/foodics-ouath2-merchant",
-    "description": "Foodics OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+    "name": "shabeer/zid-ouath2-merchant",
+    "description": "Zid OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
     "keywords": [
         "oauth",
         "oauth2",
         "client",
         "authorization",
-        "authorisation",
-        "foodics"
+        "zid"
     ],
     "license": "MIT",
     "type": "library",
