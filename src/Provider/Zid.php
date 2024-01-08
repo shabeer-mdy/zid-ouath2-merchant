@@ -50,7 +50,7 @@ class Zid extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return $this->base_api_url.'/app/v1/managers/account/profile';
+        return 'https://api.zid.sa/v1/managers/account/profile';
     }
 
     /**
@@ -157,6 +157,30 @@ class Zid extends AbstractProvider
         $request = $this->getAuthenticatedRequest($method, $url, $token);
 
         return $this->getParsedResponse($request);
+    }
+
+        /**
+     * Returns the authorization headers used by this provider.
+     *
+     * Typically this is "Bearer" or "MAC". For more information see:
+     * http://tools.ietf.org/html/rfc6749#section-7.1
+     *
+     * No default is provided, providers must overload this method to activate
+     * authorization headers.
+     *
+     * @param  mixed|null $token Either a string or an access token instance
+     * @return array
+     */
+    protected function getAuthorizationHeaders($token = null)
+    {
+        if(! $token instanceof AccessToken) {
+            return [];
+        }
+
+        return [
+            'Authorization' => 'Bearer ' . $token->getValues()['authorization'],
+            'X-MANAGER-TOKEN' => $token->getToken()
+        ];
     }
 
     /**

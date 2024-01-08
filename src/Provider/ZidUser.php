@@ -22,7 +22,7 @@ class ZidUser implements ResourceOwnerInterface
 
     public function getId()
     {
-        return $this->getResponseValue('data.user.id');
+        return $this->getResponseValue('user.id');
     }
 
     /**
@@ -32,7 +32,7 @@ class ZidUser implements ResourceOwnerInterface
      */
     public function getName()
     {
-        return $this->getResponseValue('data.user.name');
+        return $this->getResponseValue('user.name');
     }
 
     /**
@@ -42,7 +42,7 @@ class ZidUser implements ResourceOwnerInterface
      */
     public function getEmail()
     {
-        return $this->getResponseValue('data.user.email');
+        return $this->getResponseValue('user.email');
     }
 
     /**
@@ -52,7 +52,7 @@ class ZidUser implements ResourceOwnerInterface
      */
     public function getMobile()
     {
-        return $this->getResponseValue('data.user.phone');
+        return $this->getResponseValue('user.mobile');
     }
 
     /**
@@ -62,7 +62,7 @@ class ZidUser implements ResourceOwnerInterface
      */
     public function getBusinessId()
     {
-        return $this->getResponseValue('data.business.id');
+        return $this->getResponseValue('user.store.id');
     }
 
     /**
@@ -72,7 +72,7 @@ class ZidUser implements ResourceOwnerInterface
      */
     public function getBusinessReference()
     {
-        return $this->getResponseValue('data.business.reference');
+        return $this->getResponseValue('user.store.uuid');
     }
 
     /**
@@ -82,54 +82,36 @@ class ZidUser implements ResourceOwnerInterface
      */
     public function getBusinessName() 
     {
-        return $this->getResponseValue('data.business.name');
+        return $this->getResponseValue('user.store.title');
     }
 
     /**
-     * Get store owner id.
+     * Get store mobile.
      *
      * @return string|null
      */
-    public function getBusinessOwnerID()
-    {
-        return $this->getResponseValue('data.business.owner_id');
+    public function getBusinessMobile() {
+        return $this->getResponseValue('user.store.phone');
     }
 
     /**
-     * Get store owner email.
+     * Get store email.
      *
      * @return string|null
      */
-    public function getBusinessOwnerEmail()
-    {
-        return $this->getResponseValue('data.business.owner_email');
+    public function getBusinessEmail() {
+        return $this->getResponseValue('user.store.email');
     }
 
-
     /**
-     * Get store plan.
+     * Get store ulr.
      *
      * @return string|null
      */
-    public function getBusinessPlan()
-    {
-        return $this->getResponseValue('data.business.plan');
+    public function getBusinessUrl() {
+        return $this->getResponseValue('user.store.url');
     }
 
-    /**
-     * Get store created at.
-     *
-     * @return \DateTime
-     * @throws Exception
-     */
-    public function getBusinessCreatedAt()
-    {
-        $created_at = $this->getResponseValue('data.business.created_at');
-        if ($created_at) {
-            return new \DateTime($created_at);
-        }
-        return new \DateTime();
-    }
 
     /**
      * Get user data as an array.
@@ -140,7 +122,7 @@ class ZidUser implements ResourceOwnerInterface
     public function toArray()
     {
         try {
-            return $this->response['data'];
+            return $this->response['user'];
         }catch (Exception $exception){
             throw new Exception('User data not found');
         }
